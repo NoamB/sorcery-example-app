@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Collaboration</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+	<div id="nav">
+		<% if logged_in_user %>
+        	<%= link_to "Edit Profile", edit_user_path(logged_in_user.id) %>
+        	<%= link_to "Logout", :logout %>
+        <% else %>
+        	<%= link_to "Register", new_user_path %> |
+        	<%= link_to "Login", :login %> |
+        <% end %>
+	</div>
+<%= yield %>
+
+</body>
+</html>
