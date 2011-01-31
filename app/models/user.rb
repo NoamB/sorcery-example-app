@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
     config.username_attribute_name = :email
   end
   
+  
   validates_confirmation_of :password, :on => :create, :message => "should match confirmation"
 end
