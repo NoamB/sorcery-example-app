@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :authenticate, :only => [:index, :new, :create, :activate, :reset_password]
+  skip_before_filter :require_user_login, :only => [:index, :new, :create, :activate, :reset_password]
   # GET /users
   # GET /users.xml
   def index

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     config.session_timeout_from_last_action = false
   end
   
-  before_filter :authenticate, :except => [:not_authenticated]
+  before_filter :require_user_login, :except => [:not_authenticated]
   
   protected
   

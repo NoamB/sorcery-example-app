@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  skip_before_filter :authenticate
+  skip_before_filter :require_user_login
 
   def create # request password reset
     @user = User.find_by_email(params[:email])
