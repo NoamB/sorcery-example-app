@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_user_login, :only => [:index, :new, :create, :activate, :reset_password]
+  before_filter :require_user_login_from_http, :only => [:login_from_http]
+  skip_before_filter :require_user_login, :only => [:index, :new, :create, :activate, :reset_password, :login_from_http]
   # GET /users
   # GET /users.xml
   def index
@@ -92,4 +93,7 @@ class UsersController < ApplicationController
     end
   end
   
+  def login_from_http
+    redirect_to users_path, :notice => 'Login from basic auth successful'
+  end
 end

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     config.login_retries_amount_allowed = 20
     config.login_retries_time_period = 20
     config.login_ban_time_period = 2.minutes
+    config.controller_to_realm_map = {"application" => "Application", "users" => "Users"}
   end
   
   before_filter :require_user_login, :except => [:not_authenticated]
