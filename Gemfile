@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 gem 'mysql2'
-
+gem 'bcrypt-ruby', '~> 2.1.4', :require => 'bcrypt'
 # Deploy with Capistrano
 # gem 'capistrano'
 
