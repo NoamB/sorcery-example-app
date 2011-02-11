@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   
   def activation_needed_email(user)
     @user = user
-    @url  = "http://0.0.0.0:3000/users/activate?c=#{user.activation_code}"
+    @url  = "http://0.0.0.0:3000/users/activate?code=#{user.activation_code}"
     mail(:to => user.email,
          :subject => "Welcome to My Awesome Site")
   end
@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   
   def reset_password_email(user)
     @user = user
-    @url  = "http://0.0.0.0:3000/password_resets/#{user.id}/edit?c=#{user.reset_password_code}"
+    @url  = "http://0.0.0.0:3000/password_resets/#{user.id}/edit?code=#{user.reset_password_code}"
     mail(:to => user.email,
          :subject => "Your password has been reset")
   end

@@ -4,6 +4,7 @@ class PasswordResetsController < ApplicationController
   def create # request password reset
     @user = User.find_by_email(params[:email])
     
+    # This line sends an email to the user with instructions on how to reset their password (a url with a random token)
     @user.reset_password! if @user
     
     # Tell the user instructions have been sent whether or not email was found.
@@ -13,8 +14,10 @@ class PasswordResetsController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @code = params[:c]
-    not_authenticated if @user.reset_password_code != @code
+    @code = params[:code]
+    
+    # This line checks if the code matches and if it hasn't expired yet.
+    not_authenticated if !@user.reset_password_code_valid?(@code)
   end
   
   def update

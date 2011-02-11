@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(:version => 20101224223625) do
 
   create_table "users", :force => true do |t|
-    t.string   "email",                        :null => false
-    t.string   "crypted_password",             :null => false
-    t.string   "salt",                         :null => false
+    t.string   "email",                          :null => false
+    t.string   "crypted_password",               :null => false
+    t.string   "salt",                           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "activation_state"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20101224223625) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_code"
+    t.datetime "reset_password_code_expires_at"
     t.datetime "last_login"
     t.datetime "last_logout"
     t.datetime "last_activity"
