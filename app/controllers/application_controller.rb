@@ -12,10 +12,15 @@ class ApplicationController < ActionController::Base
   
   before_filter :require_user_login, :except => [:not_authenticated]
   
+  helper_method :logged_in_users_list
+  
   protected
   
   def not_authenticated
     redirect_to root_path, :alert => "Please login first."
   end
-    
+  
+  def logged_in_users_list
+    logged_in_users.map {|u| u.email}.join(", ")
+  end
 end

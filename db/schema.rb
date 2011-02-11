@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101224223624) do
+ActiveRecord::Schema.define(:version => 20101224223625) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                        :null => false
@@ -23,10 +23,14 @@ ActiveRecord::Schema.define(:version => 20101224223624) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_code"
+    t.datetime "last_login"
+    t.datetime "last_logout"
+    t.datetime "last_activity"
   end
 
   add_index "users", ["activation_code"], :name => "index_users_on_activation_code"
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["last_logout", "last_activity"], :name => "index_users_on_last_logout_and_last_activity"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
 end
