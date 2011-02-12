@@ -24,14 +24,15 @@ ActiveRecord::Schema.define(:version => 20101224223625) do
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_code"
     t.datetime "reset_password_code_expires_at"
-    t.datetime "last_login"
-    t.datetime "last_logout"
-    t.datetime "last_activity"
+    t.datetime "reset_password_email_sent_at"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
   end
 
   add_index "users", ["activation_code"], :name => "index_users_on_activation_code"
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["last_logout", "last_activity"], :name => "index_users_on_last_logout_and_last_activity"
+  add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
 end
