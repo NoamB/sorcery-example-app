@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_user_login_from_http, :only => [:login_from_http]
-  skip_before_filter :require_user_login, :only => [:index, :new, :create, :activate, :reset_password, :login_from_http]
+  before_filter :require_login_from_http_basic, :only => [:login_from_http]
+  skip_before_filter :require_login, :only => [:index, :new, :create, :activate, :reset_password, :login_from_http]
   # GET /users
   # GET /users.xml
   def index

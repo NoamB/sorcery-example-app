@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     config.controller_to_realm_map = {"application" => "Application", "users" => "Users"}
   end
   
-  before_filter :require_user_login, :except => [:not_authenticated]
+  before_filter :require_login, :except => [:not_authenticated]
   
   helper_method :logged_in_users_list
   
