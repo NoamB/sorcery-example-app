@@ -16,18 +16,17 @@ class PasswordResetsController < ApplicationController
 
   # This is the reset password form.
   def edit
-    @user = User.find(params[:id])
-    @code = params[:code]
-    
-    # This line checks if the code matches and if it hasn't expired yet.
-    not_authenticated if !@user.reset_password_code_valid?(@code)
+    @user = User.load_from_reset_password_token(params[:id])
+    @token = params[:id]
+    not_authenticated if !@user
   end
   
   # This action fires when the user has sent the reset password form.
   def update
-    @user = User.find(params[:id])
-    @code = params[:code]
-    if @code = @user.reset_password_code && @user.update_attributes(params[:user])
+    @user = User.load_from_reset_password_token(params[:token])
+    not_authenticated if !@user
+    # the next line clears the temporary token and updates the password
+    if @user.reset_password!(params[:user])
       redirect_to(root_path, :notice => 'Password was successfully updated.')
     else
       render :action => "edit"

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_login_from_http_basic, :only => [:login_from_http]
-  skip_before_filter :require_login, :only => [:index, :new, :create, :activate, :reset_password, :login_from_http]
+  before_filter :require_login_from_http_basic, :only => [:login_from_http_basic]
+  skip_before_filter :require_login, :only => [:index, :new, :create, :activate, :login_from_http_basic]
   # GET /users
   # GET /users.xml
   def index
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   end
   
   def activate
-    @user = User.find_by_activation_code(params[:c])
+    @user = User.find_by_activation_code(params[:code])
     if @user
       @user.activate!
       redirect_to(login_path, :notice => 'User was successfully activated.')
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def login_from_http
+  def login_from_http_basic
     redirect_to users_path, :notice => 'Login from basic auth successful'
   end
 end

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     config.username_attribute_name           = :email
     config.activity_timeout                  = 1.minutes
     config.reset_password_expiration_period  = 10.minutes
+    config.reset_password_time_between_emails = nil
   end
   
   validates_confirmation_of :password, :on => :create, :message => "should match confirmation"

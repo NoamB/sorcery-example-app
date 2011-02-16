@@ -22,7 +22,7 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
-	<%= hidden_field_tag :code, @code %>
+	<%= hidden_field_tag :token, @token %>
   </div>
   <div class="actions">
     <%= f.submit %>
