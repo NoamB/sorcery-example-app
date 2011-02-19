@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
     config.activity_timeout                  = 1.minutes
     config.reset_password_expiration_period  = 10.minutes
     config.reset_password_time_between_emails = nil
+    config.consecutive_login_retries_amount_allowed = 10
+    config.login_lock_time_period = 2.minutes
   end
   
   validates_confirmation_of :password, :on => :create, :message => "should match confirmation"
