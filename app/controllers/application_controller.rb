@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   activate_sorcery! do |config|
     config.session_timeout = 10.minutes
     config.session_timeout_from_last_action = false
+    
     config.controller_to_realm_map = {"application" => "Application", "users" => "Users"}
   end
   

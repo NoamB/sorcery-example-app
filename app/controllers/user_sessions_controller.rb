@@ -6,10 +6,9 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    success_url = session[:user_wanted_url] ? session[:user_wanted_url] : :users
     respond_to do |format|
       if @user = login(params[:email],params[:password],params[:remember])
-        format.html { redirect_to(success_url, :notice => 'Login successfull.') }
+        format.html { return_or_redirect_to(:users, :notice => 'Login successfull.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { flash.now[:alert] = "Login failed."; render :action => "new" }
