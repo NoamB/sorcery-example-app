@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20101224223626) do
     t.datetime "updated_at"
     t.string   "activation_state"
     t.string   "activation_code"
+    t.datetime "activation_code_expires_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"

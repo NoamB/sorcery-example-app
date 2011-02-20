@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(:users, :notice => 'Registration successfull.') }
+        format.html { redirect_to(:users, :notice => 'Registration successfull. Check your email for activation instructions.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   end
   
   def activate
-    @user = User.find_by_activation_code(params[:code])
+    @user = User.load_from_activation_token(params[:id])
     if @user
       @user.activate!
       redirect_to(login_path, :notice => 'User was successfully activated.')
@@ -93,6 +93,8 @@ class UsersController < ApplicationController
     end
   end
   
+  # The before filter requires authentication using HTTP Basic,
+  # And this action redirects and sets a success notice.
   def login_from_http_basic
     redirect_to users_path, :notice => 'Login from basic auth successful'
   end

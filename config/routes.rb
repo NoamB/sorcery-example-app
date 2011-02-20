@@ -3,8 +3,10 @@ Collaboration::Application.routes.draw do
     
   resources :users do
     collection do
-      get :activate
       get :login_from_http
+    end
+    member do
+      get :activate
     end
   end
   
