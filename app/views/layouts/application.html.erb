@@ -9,8 +9,8 @@
 <body>
 
 	<div id="nav">
-		<% if logged_in_user %>
-        	<%= link_to "Edit Profile", edit_user_path(logged_in_user.id) %>
+		<% if current_user %>
+        	<%= link_to "Edit Profile", edit_user_path(current_user.id) %>
         	<%= link_to "Logout", :logout %>
         <% else %>
         	<%= link_to "Register", new_user_path %> |
@@ -18,8 +18,8 @@
 			<%= link_to 'Login from HTTP', login_from_http_users_path %>
         <% end %>
 	</div>
-	<% if logged_in_user %>
-		<div id="logged_in_users"> Currently active users: <%= logged_in_users_list %></div>
+	<% if current_user %>
+		<div id="current_users"> Currently active users: <%= current_users_list %></div>
 	<% end %>
 <%= yield %>
 

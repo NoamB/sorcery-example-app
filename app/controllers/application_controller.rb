@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   activate_sorcery! do |config|
+    #config.user_class = User
     config.session_timeout = 10.minutes
     config.session_timeout_from_last_action = false
     
@@ -10,7 +11,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :require_login, :except => [:not_authenticated]
   
-  helper_method :logged_in_users_list
+  helper_method :current_users_list
   
   protected
   
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => "Please login first."
   end
   
-  def logged_in_users_list
-    logged_in_users.map {|u| u.email}.join(", ")
+  def current_users_list
+    current_users.map {|u| u.email}.join(", ")
   end
 end
