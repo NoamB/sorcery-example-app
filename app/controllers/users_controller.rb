@@ -84,8 +84,7 @@ class UsersController < ApplicationController
   end
   
   def activate
-    @user = User.load_from_activation_token(params[:id])
-    if @user
+    if @user = User.load_from_activation_token(params[:id])
       @user.activate!
       redirect_to(login_path, :notice => 'User was successfully activated.')
     else

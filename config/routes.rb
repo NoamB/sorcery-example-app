@@ -4,6 +4,7 @@ Collaboration::Application.routes.draw do
   resources :users do
     collection do
       get :login_from_http
+      get :login_with_twitter
     end
     member do
       get :activate
@@ -15,6 +16,9 @@ Collaboration::Application.routes.draw do
   
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  
+  match 'login_with_twitter' => 'application#login_with_twitter', :as => :login_with_twitter
+  match 'login_with_twitter_callback' => 'application#login_with_twitter_callback', :as => :login_with_twitter_callback
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

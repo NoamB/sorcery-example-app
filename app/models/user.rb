@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
   
+  has_many :providers, :class_name => "UserProvider", :dependent => :destroy
+    
   activate_sorcery! do |config|
     config.username_attribute_name                      = :email
     
@@ -16,6 +18,8 @@ class User < ActiveRecord::Base
   
     config.consecutive_login_retries_amount_limit       = 10
     config.login_lock_time_period                       = 2.minutes
+    
+    config.user_providers_class                         = UserProvider
   end
   
   validates_confirmation_of :password, :on => :create, :message => "should match confirmation"
