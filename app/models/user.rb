@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
   
   has_many :providers, :class_name => "UserProvider", :dependent => :destroy
-    
+  accepts_nested_attributes_for :providers
+  
   activate_sorcery! do |config|
     config.username_attribute_name                      = :email
     

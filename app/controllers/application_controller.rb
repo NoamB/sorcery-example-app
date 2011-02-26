@@ -28,12 +28,24 @@ class ApplicationController < ActionController::Base
   end
   
   def login_with_twitter_callback
-    if @user = login_from_access_token(params[:oauth_token], params[:oauth_verifier])
+    @access_token = get_access_token(:twitter)
+    if @user = login_from_access_token(@access_token.token, @access_token.secret)
       redirect_to root_path, :notice => "Logged in from Twitter!"
     else
-      @access_token = get_access_token(:twitter)
-      p @access_token
-      redirect_to root_path, :alert => "Failed to login from Twitter!"
+      begin
+        # try to create a new user
+        @user_hash = get_user_hash(:twitter)
+        @user = User.new(:email => @user_hash["screen_name"])
+        @user.crypted_password = "asd"
+        @user.salt = "asd"
+        @user.providers.build(:provider => "twitter", :access_token => @access_token.token, :access_token_secret => @access_token.secret)
+        @user.save!
+        reset_session # protect from session fixation attack
+        login_user(@user)
+        redirect_to root_path, :notice => "Logged in from Twitter!"
+      rescue
+        redirect_to root_path, :alert => "Failed to login from Twitter!"
+      end
     end
   end
   
