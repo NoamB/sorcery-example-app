@@ -19,6 +19,7 @@ class OauthsController < ApplicationController
                                :access_token => @access_token.token, 
                                :access_token_secret => @access_token.secret
                              }])
+        @user.activate!
         reset_session # protect from session fixation attack
         login_user(@user)
         redirect_to root_path, :notice => "Logged in from Twitter!"
