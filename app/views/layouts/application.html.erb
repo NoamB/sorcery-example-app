@@ -16,7 +16,8 @@
         	<%= link_to "Register", new_user_path %> |
         	<%= link_to "Login", :login %> |
 			<%= link_to 'Login from HTTP', login_from_http_users_path %> |
-			<%= link_to 'Login with Twitter', twitter_oauth_path %>
+			<%= link_to 'Login with Twitter', twitter_oauth_path %> | 
+			<%= link_to 'Login with Facebook', facebook_oauth_path %>
         <% end %>
 	</div>
 	<% if current_user %>

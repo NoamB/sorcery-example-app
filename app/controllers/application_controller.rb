@@ -1,5 +1,3 @@
-require 'oauth'
-
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
@@ -11,10 +9,15 @@ class ApplicationController < ActionController::Base
     
     config.controller_to_realm_map = {"application" => "Application", "users" => "Users"}
     
-    config.oauth_providers = [:twitter]
+    config.oauth_providers = [:twitter, :facebook]
+    
     config.twitter.key = "eYVNBjBDi33aa9GkA3w"
     config.twitter.secret = "XpbeSdCoaKSmQGSeokz5qcUATClRW5u08QWNfv71N8"
     config.twitter.callback_url = "http://0.0.0.0:3000/oauth/twitter_callback"
+    
+    config.facebook.key = "34cebc81c08a521bc66e212f947d73ec"
+    config.facebook.secret = "5b458d179f61d4f036ee66a497ffbcd0"
+    config.facebook.callback_url = "http://0.0.0.0:3000/oauth/facebook_callback"
   end
   
   before_filter :require_login, :except => [:not_authenticated]

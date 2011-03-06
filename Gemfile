@@ -12,6 +12,7 @@ gem 'bcrypt-ruby', '~> 2.1.4', :require => 'bcrypt'
 
 # Bundle the extra gems:
 gem 'oauth'
+gem 'oauth2'
 gem 'sorcery', '0.1.4'
 
 # Bundle gems for the local environment. Make sure to

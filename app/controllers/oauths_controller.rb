@@ -28,4 +28,31 @@ class OauthsController < ApplicationController
       end
     end
   end
+  
+  def facebook
+    auth_at_provider(:facebook)    
+  end
+  
+  def facebook_callback
+    if @user = login_from_access_token
+      redirect_to root_path, :notice => "Logged in from Facebook!"
+    else
+      begin
+        @user_hash = get_user_hash(:facebook)
+        p @user_hash
+        @user = User.create!(:email => @user_hash["name"], 
+                             :providers_attributes => [{
+                               :provider => :facebook, 
+                               :access_token => @access_token.token, 
+                               :access_token_secret => ""
+                             }])
+        @user.activate!
+        reset_session # protect from session fixation attack
+        login_user(@user)
+        redirect_to root_path, :notice => "Logged in from Facebook!"
+      #rescue
+      #  redirect_to root_path, :alert => "Failed to login from Facebook!"
+      end
+    end  
+  end
 end

@@ -19,6 +19,8 @@ Collaboration::Application.routes.draw do
   resource :oauth do
     get :twitter
     get :twitter_callback
+    get :facebook
+    get :facebook_callback
   end
 
   # The priority is based upon order of creation:
