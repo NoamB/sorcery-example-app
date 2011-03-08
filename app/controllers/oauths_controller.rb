@@ -8,7 +8,7 @@ class OauthsController < ApplicationController
   end
   
   def twitter_callback
-    if @user = login_from_access_token
+    if @user = login_from_access_token(:twitter)
       redirect_to root_path, :notice => "Logged in from Twitter!"
     else
       begin
@@ -34,7 +34,7 @@ class OauthsController < ApplicationController
   end
   
   def facebook_callback
-    if @user = login_from_access_token
+    if @user = login_from_access_token(:facebook)
       redirect_to root_path, :notice => "Logged in from Facebook!"
     else
       begin
