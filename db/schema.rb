@@ -13,10 +13,9 @@
 ActiveRecord::Schema.define(:version => 20110225214205) do
 
   create_table "user_providers", :force => true do |t|
-    t.integer  "user_id",             :null => false
-    t.string   "provider",            :null => false
-    t.string   "access_token",        :null => false
-    t.string   "access_token_secret", :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "provider",   :null => false
+    t.string   "uid",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
