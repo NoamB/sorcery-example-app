@@ -17,11 +17,9 @@ Collaboration::Application.routes.draw do
   match 'logout' => 'user_sessions#destroy', :as => :logout
   
   resource :oauth do
-    get :twitter
-    get :twitter_callback
-    get :facebook
-    get :facebook_callback
+    get :callback
   end
+  match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

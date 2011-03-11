@@ -15,14 +15,16 @@
   	<%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
+  <% unless @user.external? %>
+  	<div class="field">
+  	  <%= f.label :password %><br />
+  	  <%= f.password_field :password %>
+  	</div>
+  	<div class="field">
+  	  <%= f.label :password_confirmation %><br />
+  	  <%= f.password_field :password_confirmation %>
+  	</div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
