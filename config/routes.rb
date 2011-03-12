@@ -3,7 +3,7 @@ Collaboration::Application.routes.draw do
     
   resources :users do
     collection do
-      get :login_from_http
+      get :login_from_http_basic
     end
     member do
       get :activate
