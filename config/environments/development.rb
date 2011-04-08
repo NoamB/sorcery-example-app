@@ -22,8 +22,8 @@ Collaboration::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'example.com',
-    :user_name            => 'nbenari',
-    :password             => 'secret',
+    :user_name            => 'nbenari',# put your real username here to send emails.
+    :password             => 'secret', # put your real password here to send emails.
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 
