@@ -8,7 +8,21 @@ class ApplicationController < ActionController::Base
     
     config.controller_to_realm_map = {"application" => "Application", "users" => "Users"}
     
-    config.oauth_providers = [:twitter, :facebook]
+    config.external_providers = [:twitter, :facebook]
+    
+    config.twitter do |t|
+      t.key = "eYVNBjBDi33aa9GkA3w"
+      t.secret = "XpbeSdCoaKSmQGSeokz5qcUATClRW5u08QWNfv71N8"
+      t.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
+      t.user_info_mapping = {:email => "screen_name"}
+    end
+    
+    config.facebook do |f|
+      f.key = "34cebc81c08a521bc66e212f947d73ec"
+      f.secret = "5b458d179f61d4f036ee66a497ffbcd0"
+      f.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+      f.user_info_mapping = {:email => "name"}
+    end
     
     config.twitter.key = "eYVNBjBDi33aa9GkA3w"
     config.twitter.secret = "XpbeSdCoaKSmQGSeokz5qcUATClRW5u08QWNfv71N8"
