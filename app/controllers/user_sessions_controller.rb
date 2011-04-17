@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
   def create
     respond_to do |format|
       if @user = login(params[:email],params[:password],params[:remember])
-        format.html { return_or_redirect_to(:users, :notice => 'Login successfull.') }
+        format.html { redirect_back_or_to(:users, :notice => 'Login successfull.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { flash.now[:alert] = "Login failed."; render :action => "new" }
