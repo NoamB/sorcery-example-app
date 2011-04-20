@@ -11,6 +11,6 @@ app/models/user.rb
 
 app/views/*
 
-config/application.rb
+config/initializers/sorcery.rb
 
 db/migrate/*
