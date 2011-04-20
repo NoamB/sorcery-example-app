@@ -1,6 +1,6 @@
 Collaboration::Application.config.sorcery.submodules = [:user_activation, :http_basic_auth, :remember_me, :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external]
 
-Collaboration::Application.config.sorcery.tap do |config|
+Collaboration::Application.config.sorcery.configure do |config|
   config.session_timeout = 10.minutes
   config.session_timeout_from_last_action = false
   
