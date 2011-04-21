@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   def new
     @user = User.new
   end
-
+  
   def create
     respond_to do |format|
       if @user = login(params[:email],params[:password],params[:remember])
