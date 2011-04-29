@@ -10,11 +10,13 @@ gem 'mysql2'
 
 
 # Bundle the extra gems:
-gem 'sorcery', '0.4.1'
+gem 'sorcery', '0.4.2'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-
+  gem "test-unit", "~> 2.3.0"
+  gem "rspec", "~> 2.5.0"
+  gem 'rspec-rails', "~> 2.5.0"
 end
