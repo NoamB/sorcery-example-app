@@ -11,7 +11,7 @@ class User
   field :remember_me_token_expires_at, type: DateTime
   field :activation_code, type: String
   field :activation_state, type: String
-  field :activation_token_expires_at, type: DateTime
+  field :activation_code_expires_at, type: DateTime
   field :lock_expires_at, type: DateTime
   field :last_login_at, type: DateTime
   field :failed_logins_count, type: Integer
