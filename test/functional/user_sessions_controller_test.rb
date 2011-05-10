@@ -2,7 +2,12 @@ require 'test_helper'
 
 class UserSessionsControllerTest < ActionController::TestCase
   setup do
-    @user = users(:noam)
+    User.delete_all
+    @user = User.create!(email: 'whatever@whatever.com',
+                         salt: "asdasdastr4325234324sdfds",
+                         crypted_password: Sorcery::CryptoProviders::BCrypt.encrypt("secret", "asdasdastr4325234324sdfds"),
+                         activation_state: "active",
+                         _type: "User")
   end
 
   test "should get new" do

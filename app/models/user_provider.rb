@@ -1,3 +1,4 @@
-class UserProvider < ActiveRecord::Base
+class UserProvider
+  include Mongoid::Document
   belongs_to :user
 end
