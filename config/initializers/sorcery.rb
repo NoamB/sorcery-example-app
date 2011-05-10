@@ -20,6 +20,7 @@ Rails.application.config.sorcery.configure do |config|
   
   config.user_config do |user|
     user.username_attribute_name                      = :email
+    user.subclasses_inherit_config                    = true
 
     user.user_activation_mailer                       = UserMailer
     user.activation_token_attribute_name              = :activation_code
