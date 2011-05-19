@@ -1,6 +1,7 @@
 Rails.application.config.sorcery.submodules = [:user_activation, :http_basic_auth, :remember_me, :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external]
 
 Rails.application.config.sorcery.configure do |config|
+  
   config.session_timeout = 10.minutes
   config.session_timeout_from_last_action = false
   
@@ -37,4 +38,6 @@ Rails.application.config.sorcery.configure do |config|
 
     user.authentications_class                        = UserProvider
   end
+  
+  config.user_class = User
 end
