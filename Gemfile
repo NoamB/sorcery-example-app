@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
-gem 'mysql2'
+gem 'rails', '3.0.9'
+gem 'mysql2', '0.2.11'
 # Deploy with Capistrano
 # gem 'capistrano'
 
@@ -10,7 +10,7 @@ gem 'mysql2'
 
 
 # Bundle the extra gems:
-gem 'sorcery', '0.5.2'
+gem 'sorcery', '0.6.0'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
