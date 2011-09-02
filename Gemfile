@@ -10,7 +10,7 @@ gem 'mysql2', '0.2.11'
 
 
 # Bundle the extra gems:
-gem 'sorcery', '0.6.0'
+gem 'sorcery', '0.6.1'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
