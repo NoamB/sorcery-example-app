@@ -11,7 +11,7 @@ gem 'bson_ext', '1.3.0'
 
 
 # Bundle the extra gems:
-gem 'sorcery', '0.6.0'
+gem 'sorcery', '0.6.1'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

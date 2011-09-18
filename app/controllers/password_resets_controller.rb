@@ -23,8 +23,11 @@ class PasswordResetsController < ApplicationController
   
   # This action fires when the user has sent the reset password form.
   def update
-    @user = User.load_from_reset_password_token(params[:token])
+    @token = params[:token] # needed to render the form again in case of error
+    @user = User.load_from_reset_password_token(@token)
     not_authenticated if !@user
+    # the next line makes the password confirmation validation work
+    @user.password_confirmation = params[:user][:password_confirmation]
     # the next line clears the temporary token and updates the password
     if @user.change_password!(params[:user][:password])
       redirect_to(root_path, :notice => 'Password was successfully updated.')
