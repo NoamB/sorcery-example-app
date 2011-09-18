@@ -6,5 +6,10 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
   
-  validates_confirmation_of :password, :on => :create, :message => "should match confirmation"
+  validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password_set?
+  validates_confirmation_of :password, :message => "should match confirmation", :if => :password_set?
+
+  def password_set?
+    @password
+  end
 end
