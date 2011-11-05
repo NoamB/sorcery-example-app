@@ -1,3 +1,4 @@
+require 'oauth2'
 class OauthsController < ApplicationController
   skip_before_filter :require_login
   
@@ -9,6 +10,7 @@ class OauthsController < ApplicationController
   
   def callback
     provider = params[:provider]
+    begin
     if @user = login_from(provider)
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
@@ -21,6 +23,13 @@ class OauthsController < ApplicationController
       rescue
         redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
       end
+    end
+    rescue ::OAuth2::Error => e
+      p e
+      puts e.code
+      puts e.description
+      puts e.message
+      puts e.backtrace
     end
   end
 end

@@ -20,7 +20,7 @@ Rails.application.config.sorcery.configure do |config|
   config.facebook.user_info_mapping = {:email => "name"}
   
   config.user_config do |user|
-    user.username_attribute_name                      = :email
+    user.username_attribute_names                      = [:email]
     user.subclasses_inherit_config                    = true
 
     user.user_activation_mailer                       = UserMailer
