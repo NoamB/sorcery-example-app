@@ -1,13 +1,13 @@
 require 'oauth2'
 class OauthsController < ApplicationController
   skip_before_filter :require_login
-  
+
   # sends the user on a trip to the provider,
   # and after authorizing there back to the callback url.
   def oauth
     login_at(params[:provider])
   end
-  
+
   def callback
     provider = params[:provider]
     begin
@@ -18,7 +18,7 @@ class OauthsController < ApplicationController
         @user = create_from(provider)
         @user.activate!
         reset_session # protect from session fixation attack
-        login_user(@user)
+        auto_login(@user)
         redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
       rescue
         redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
